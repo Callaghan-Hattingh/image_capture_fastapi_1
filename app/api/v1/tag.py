@@ -9,7 +9,7 @@ router = APIRouter()
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
 async def create_tag(*, session: Session = Depends(get_session), tag: Tag):
-    print(tag)
+    # print(tag)
     db_tag = Tag.from_orm(tag)
     session.add(db_tag)
     session.commit()

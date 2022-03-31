@@ -1,12 +1,16 @@
 from app.api import get_session
 from typing import List
 from fastapi import APIRouter, status, Depends, Query, UploadFile, File, Form
-from sqlmodel import Session, select
+from sqlmodel import Session, select, desc
 from app.models import Image
 import shutil
 
 
 router = APIRouter()
+
+# todo:still need to add delete image
+# todo:still add error handling image
+# todo:still need to send image to client
 
 
 @router.get("/", status_code=status.HTTP_200_OK)
@@ -16,7 +20,7 @@ async def get_images(
     offset: int = 0,
     limit: int = Query(default=5, lte=25),
 ):
-    images = session.exec(select(Image).offset(offset).limit(limit)).all()
+    images = session.exec(select(Image).order_by(Image.id.desc()).offset(offset).limit(limit)).all()
     return images
 
 
