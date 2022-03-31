@@ -1,7 +1,10 @@
 import uvicorn
 from fastapi import FastAPI
 from app.api.api import api_router
-from fastapi.staticfiles import StaticFiles
+# from fastapi.staticfiles import StaticFiles
+
+# todo: add README.md
+# todo: add commits as required
 
 app = FastAPI()
 
